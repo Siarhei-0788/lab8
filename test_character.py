@@ -137,3 +137,5 @@ def test_character_str():
         "Навыки: Сила, Защита"
     )
     assert str(character) == expected_output
+    
+    
