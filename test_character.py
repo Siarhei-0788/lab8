@@ -139,7 +139,7 @@ def test_character_str():
     assert str(character) == expected_output
     
     
-def test_failing_test(director):
-    character = director.create_warrior()
-    # Этот тест упадет, потому что у воина нет навыка "Магия"
-    assert "Магия" in character.skills
+# def test_failing_test(director):
+#     character = director.create_warrior()
+#     # Этот тест упадет, потому что у воина нет навыка "Магия"
+#     assert "Магия" in character.skills
