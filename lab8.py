@@ -15,7 +15,7 @@ class Character:
                 f"Броня: {self.armor}\n"
                 f"Навыки: {skills_str}")
 
-# Интерфейс Builder
+# Интерфейс Builder (Строитель)
 class CharacterBuilder:
     def __init__(self):
         self.character = Character()
@@ -39,7 +39,7 @@ class CharacterBuilder:
     def build(self):
         return self.character
 
-# Класс Director, который управляет процессом создания
+# Класс Director (Директор), который управляет процессом создания
 class CharacterDirector:
     def __init__(self, builder):
         self.builder = builder
@@ -62,17 +62,17 @@ class CharacterDirector:
 
 # Функция для отображения персонажа
 def display_character(stdscr, character):
-    stdscr.clear()
+    stdscr.clear()  # Очищаем экран
     stdscr.addstr("Созданный персонаж:\n", curses.color_pair(1))
     stdscr.addstr(str(character) + "\n\n", curses.color_pair(1))
     stdscr.addstr("Нажмите любую клавишу для продолжения...", curses.color_pair(1))
-    stdscr.getch()
+    stdscr.getch()  # Ожидаем нажатия любой клавиши
 
 # Функция для отображения текстового интерфейса
 def draw_menu(stdscr):
     curses.curs_set(0)  # Скрываем курсор
-    stdscr.clear()
-    stdscr.refresh()
+    stdscr.clear()  # Очищаем экран
+    stdscr.refresh()  # Обновляем экран
 
     # Цвета
     curses.start_color()
@@ -89,14 +89,16 @@ def draw_menu(stdscr):
         stdscr.clear()
         stdscr.addstr("Добро пожаловать в генератор персонажей RPG!\n\n", curses.color_pair(1))
 
+        # Отображение элементов меню
         for idx, item in enumerate(menu_items):
             if idx == current_row:
                 stdscr.addstr(f"> {item}\n", curses.color_pair(2))
             else:
                 stdscr.addstr(f"  {item}\n", curses.color_pair(1))
 
-        key = stdscr.getch()
+        key = stdscr.getch()  # Получаем нажатие клавиши
 
+        # Обработка нажатия клавиш
         if key == curses.KEY_UP and current_row > 0:
             current_row -= 1
         elif key == curses.KEY_DOWN and current_row < len(menu_items) - 1:
@@ -113,9 +115,8 @@ def draw_menu(stdscr):
 
 # Запуск программы
 def main():
-    curses.wrapper(draw_menu)
+    curses.wrapper(draw_menu)  # Обертываем функцию draw_menu в curses.wrapper для корректной работы с curses
     print("Спасибо за использование генератора персонажей!")
 
 if __name__ == "__main__":
     main()
-    
